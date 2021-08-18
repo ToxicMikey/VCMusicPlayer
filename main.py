@@ -44,7 +44,7 @@ bot.send(
                 description="Check if bot alive"
             ),
             types.BotCommand(
-                command="help",
+                command="vchelp",
                 description="Shows help message"
             ),
             types.BotCommand(
