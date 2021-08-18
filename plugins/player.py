@@ -613,11 +613,11 @@ async def clean_raw_pcm(client, m: Message):
     await mp.delete(m)
 
 
-@Client.on_message(filters.command(["mute", f"mute@{U}"]) & admin_filter & (filters.chat(CHAT) | filters.private))
+@Client.on_message(filters.command(["tattieng", f"tattieng@{U}"]) & admin_filter & (filters.chat(CHAT) | filters.private))
 async def mute(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text("Nothing playing to mute.")
+        k=await m.reply_text("Không có gì chơi để tắt tiếng..")
         await mp.delete(k)
         await mp.delete(m)
         return
@@ -626,11 +626,11 @@ async def mute(_, m: Message):
     await mp.delete(k)
     await mp.delete(m)
 
-@Client.on_message(filters.command(["unmute", f"unmute@{U}"]) & admin_filter & (filters.chat(CHAT) | filters.private))
+@Client.on_message(filters.command(["battieng", f"battieng@{U}"]) & admin_filter & (filters.chat(CHAT) | filters.private))
 async def unmute(_, m: Message):
     group_call = mp.group_call
     if not group_call.is_connected:
-        k=await m.reply_text("Nothing playing to mute.")
+        k=await m.reply_text("Không có gì phát để tắt tiếng.")
         await mp.delete(k)
         await mp.delete(m)
         return
