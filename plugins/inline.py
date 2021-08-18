@@ -1,17 +1,3 @@
-"""
-VC Music Player, Telegram Voice Chat Userbot
-Copyright (C) 2021  Zaute Km | TGVCSETS
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>
-"""
 from pyrogram.handlers import InlineQueryHandler
 from youtubesearchpython import VideosSearch
 from utils import USERNAME
@@ -21,14 +7,11 @@ from config import Config
 REPLY_MESSAGE=Config.REPLY_MESSAGE
 buttons = [
     [
-        InlineKeyboardButton('🏃 Deploy to Heroku 🏃', url='https://heroku.com/deploy?template=https://github.com/LushaiMusic/VCMusicPlayer'),
+        InlineKeyboardButton('👨‍🎤 Trợ lý nhạc', url=f'https://t.me/{USERNAME}'),
+        InlineKeyboardButton('Thuê bot 👨‍🎤', url='https://t.me/ryostart'),
     ],
     [
-        InlineKeyboardButton('👨‍🎤 Play Music', url=f'https://t.me/{USERNAME}'),
-        InlineKeyboardButton('How to Deploy 🤓', url='https://t.me/c/1481808444/131'),
-    ],
-    [
-        InlineKeyboardButton('🆘 Help & Commands 🆘', callback_data='help')       
+        InlineKeyboardButton('🆘 Trợ giúp & Lệnh 🆘', callback_data='help')       
     ]
     ]
 @Client.on_inline_query()
@@ -38,7 +21,7 @@ async def search(client, query):
         answers.append(
             InlineQueryResultArticle(
                 title="Deploy",
-                input_message_content=InputTextMessageContent(f"{REPLY_MESSAGE}\n\n<b>You can't use this bot in your group, for that you have to make your own bot from the [SOURCE CODE](https://github.com/LushaiMusic/VCMusicPlayer) below.</b>", disable_web_page_preview=True),
+                input_message_content=InputTextMessageContent(f"{REPLY_MESSAGE}\n\n<b>Dùng chùa cái lồn biến, bot này của @ryostar</b>", disable_web_page_preview=True),
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )
             )
@@ -80,7 +63,7 @@ async def search(client, query):
             await query.answer(
                 results=answers,
                 cache_time=0,
-                switch_pm_text=("Nothing found"),
+                switch_pm_text=("Không kết quả"),
                 switch_pm_parameter="",
             )
 
