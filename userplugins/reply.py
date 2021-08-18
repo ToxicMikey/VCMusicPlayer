@@ -1,17 +1,3 @@
-"""
-VC Music Player, Telegram Voice Chat Userbot
-Copyright (C) 2021  ZauteKm <https://telegram.dog/ZauteKm>
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>
-"""
 from pyrogram import Client, filters
 from utils import USERNAME
 from config import Config
@@ -35,7 +21,7 @@ async def reply(client, message):
     except BotInlineDisabled:
         for admin in ADMINS:
             try:
-                await client.send_message(chat_id=admin, text=f"Hey,\nIt seems you have disabled Inline Mode for @{USERNAME}\n\nA Nibba is spaming me in PM, enable inline mode for @{USERNAME} from @Botfather to reply him.")
+                await client.send_message(chat_id=admin, text=f"Hey,\nCó vẻ như bạn đã tắt Chế độ nội tuyến cho @{USERNAME}\n\nMột Nibba đang gửi thư rác cho tôi trong PM, hãy bật chế độ nội tuyến cho @{USERNAME} từ @BotFather để trả lời anh ấy.")
             except Exception as e:
                 print(e)
                 pass
