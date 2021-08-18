@@ -1,20 +1,3 @@
-"""
-VC Music Player, Telegram Voice Chat Userbot
-Copyright (C) 2021  Zaute Km | TGVCSETS
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>
-"""
 import os
 from youtube_dl import YoutubeDL
 from config import Config
@@ -124,7 +107,7 @@ async def yplay(_, message: Message):
                 type="query"
                 ysearch=query
         else:
-            d=await message.reply_text("You Didn't gave me anything to play. Send me a audio file or reply /play to an audio file.")
+            d=await message.reply_text("Bạn đã không cho tôi bất cứ điều gì để chơi. Gửi cho tôi tệp âm thanh hoặc trả lời / phát tệp âm thanh.")
             await mp.delete(d)
             await mp.delete(message)
             return
@@ -132,13 +115,13 @@ async def yplay(_, message: Message):
     group_call = mp.group_call
     if type=="audio":
         if round(m_audio.audio.duration / 60) > DURATION_LIMIT:
-            d=await message.reply_text(f"❌ Audios longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided audio is {round(m_audio.audio.duration/60)} minute(s)")
+            d=await message.reply_text(f"❌ Nhạc trên {DURATION_LIMIT} phút không được phép, âm thanh được cung cấp là {round(m_audio.audio.duration/60)} minute(s)")
             await mp.delete(d)
             await mp.delete(message)
             return
         if playlist and playlist[-1][2] \
                 == m_audio.audio.file_id:
-            d=await message.reply_text(f"{emoji.ROBOT} Already added in Playlist")
+            d=await message.reply_text(f"{emoji.ROBOT} Đã được thêm vào Danh sách phát")
             await mp.delete(d)
             await mp.delete(message)
             return
@@ -174,12 +157,12 @@ async def yplay(_, message: Message):
             )
 
             await m_status.delete()
-            print(f"- START PLAYING: {playlist[0][1]}")
+            print(f"- BẮT ĐẦU CUỘC CHƠI: {playlist[0][1]}")
         if not playlist:
-            pl = f"{emoji.NO_ENTRY} Empty playlist"
+            pl = f"{emoji.NO_ENTRY} Danh sách phát trống"
         else:   
             pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-                f"**{i}**. **🎸{x[1]}**\n   👤**Requested by:** {x[4]}"
+                f"**{i}**. **🎸{x[1]}**\n   👤**Được yêu cầu bởi:** {x[4]}"
                 for i, x in enumerate(playlist)
                 ])
         if EDIT_TITLE:
@@ -197,18 +180,18 @@ async def yplay(_, message: Message):
 
     if type=="youtube" or type=="query":
         if type=="youtube":
-            msg = await message.reply_text("⚡️ **Fetching Song From YouTube...**")
+            msg = await message.reply_text("⚡️ **Tìm nạp bài hát từ YouTube...**")
             url=yturl
         elif type=="query":
             try:
-                msg = await message.reply_text("⚡️ **Fetching Song From YouTube...**")
+                msg = await message.reply_text("⚡️ **Tìm nạp bài hát từ YouTube...**")
                 ytquery=ysearch
                 results = YoutubeSearch(ytquery, max_results=1).to_dict()
                 url = f"https://youtube.com{results[0]['url_suffix']}"
                 title = results[0]["title"][:40]
             except Exception as e:
                 await msg.edit(
-                    "Song not found.\nTry inline mode.."
+                    "Không tìm thấy bài hát.\nNhập tìm bằng bot nội tuyến.."
                 )
                 print(str(e))
                 return
@@ -234,7 +217,7 @@ async def yplay(_, message: Message):
         client = group_call.client
         if len(playlist) == 1:
             m_status = await msg.edit(
-                f"{emoji.INBOX_TRAY} Downloading and Processing..."
+                f"{emoji.INBOX_TRAY} Tải xuống và xử lý..."
             )
             await mp.download_audio(playlist[0])
             if 1 in RADIO:
@@ -708,16 +691,12 @@ allcmd = ["play", "player", f"play@{U}", f"player@{U}"] + admincmds
 async def not_chat(_, m: Message):
     buttons = [
         [
-            InlineKeyboardButton('🔺 Heroku', url='https://youtu.be/FKaAU4Pr2bw'),
-            InlineKeyboardButton('Qovery 🔺', url='https://youtu.be/KC4YdpDGQKg'),
-        ],
-        [
             InlineKeyboardButton('🆘 Help & Commands 🆘', callback_data='help'),       
         ],
         [
-            InlineKeyboardButton('👨‍💻 Developer', url='https://t.me/c/1417456571/580'),
-            InlineKeyboardButton('Channel 📢', url='https://t.me/c/1481808444/131')
+            InlineKeyboardButton('👨‍💻 Ryo Star', url='https://t.me/ryostar'),
+            InlineKeyboardButton('Bots list 📢', url='ryolist')
         ]
         ]
-    k=await m.reply("<b>You can't use this bot in this group, for that you have to make your own bot from the [Soure Code 👈](https://github.com/LushaiMusic/VCMusicPlayer) below.</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+    k=await m.reply("<b>Bạn không thể sử dụng bot này trong nhóm này.</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
     await mp.delete(m)
