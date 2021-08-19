@@ -8,7 +8,7 @@ REPLY_MESSAGE=Config.REPLY_MESSAGE
 buttons = [
     [
         InlineKeyboardButton('👨‍🎤 Trợ lý nhạc', url=f'https://t.me/{USERNAME}'),
-        InlineKeyboardButton('Thuê bot 👨‍🎤', url='https://t.me/ryostart'),
+        InlineKeyboardButton('Thuê bot 👨‍🎤', url='https://t.me/ryostar'),
     ],
     [
         InlineKeyboardButton('🆘 Trợ giúp & Lệnh 🆘', callback_data='help')       
