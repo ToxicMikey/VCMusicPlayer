@@ -695,7 +695,7 @@ async def not_chat(_, m: Message):
         ],
         [
             InlineKeyboardButton('👨‍💻 Ryo Star', url='https://t.me/ryostar'),
-            InlineKeyboardButton('Bots list 📢', url='ryolist')
+            InlineKeyboardButton('Bots list 📢', url='https://t.me/ryobackup')
         ]
         ]
     k=await m.reply("<b>Bạn không thể sử dụng bot này trong nhóm này.</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
